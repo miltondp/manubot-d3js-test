@@ -130,9 +130,9 @@
   <meta name="citation_fulltext_html_url" content="https://miltondp.github.io/manubot-d3js-test/" />
   <meta name="citation_pdf_url" content="https://miltondp.github.io/manubot-d3js-test/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://miltondp.github.io/manubot-d3js-test/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://miltondp.github.io/manubot-d3js-test/v/b8e2b3c2dbee8fbd3e2efd49f9e52c4c6af3dd9f/" />
-  <meta name="manubot_html_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/b8e2b3c2dbee8fbd3e2efd49f9e52c4c6af3dd9f/" />
-  <meta name="manubot_pdf_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/b8e2b3c2dbee8fbd3e2efd49f9e52c4c6af3dd9f/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://miltondp.github.io/manubot-d3js-test/v/421c724caa0e9e26243b91575ed1439dcf344e65/" />
+  <meta name="manubot_html_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/421c724caa0e9e26243b91575ed1439dcf344e65/" />
+  <meta name="manubot_pdf_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/421c724caa0e9e26243b91575ed1439dcf344e65/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -168,9 +168,9 @@
 </header>
 <p><small><em>
 This manuscript
-(<a href="https://miltondp.github.io/manubot-d3js-test/v/b8e2b3c2dbee8fbd3e2efd49f9e52c4c6af3dd9f/">permalink</a>)
+(<a href="https://miltondp.github.io/manubot-d3js-test/v/421c724caa0e9e26243b91575ed1439dcf344e65/">permalink</a>)
 was automatically generated
-from <a href="https://github.com/miltondp/manubot-d3js-test/tree/b8e2b3c2dbee8fbd3e2efd49f9e52c4c6af3dd9f">miltondp/manubot-d3js-test@b8e2b3c</a>
+from <a href="https://github.com/miltondp/manubot-d3js-test/tree/421c724caa0e9e26243b91575ed1439dcf344e65">miltondp/manubot-d3js-test@421c724</a>
 on September 3, 2022.
 </em></small></p>
 <h2 id="authors">Authors</h2>
@@ -423,7 +423,7 @@ White background specified to serve as a backdrop for transparent sections of th
 </tbody>
 </table>
 </div>
-<div id="tbl:8d8c8fa8-298e-4f70-b357-38b0123ea058" class="tablenos">
+<div id="tbl:ef6b12fa-9e64-4b23-964e-0512a8a56d00" class="tablenos">
 <table id="tbl:">
 <caption><span>Table 3:</span> A table with merged cells using the <code>attributes</code> plugin.
 </caption>
@@ -506,54 +506,188 @@ useful for <em>important information</em> - <a href="https://manubot.org/">manub
 useful for <em>warnings</em> - <a href="https://manubot.org/">manubot.org</a></span></p>
 <h2 id="d3.js-test">d3.js test</h2>
 <!-- Add a svg area, empty -->
-<div id="scatter_area">
+<div id="d3plotarea">
 
 </div>
 <script>
 
-// set the dimensions and margins of the graph
-var margin = {top: 10, right: 40, bottom: 30, left: 30},
-    width = 450 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+// Copyright 2021 Observable, Inc.
+// Released under the ISC license.
+// https://observablehq.com/@d3/sortable-bar-chart
+function BarChart(data, {
+  x = (d, i) => i, // given d in data, returns the (ordinal) x-value
+  y = d => d, // given d in data, returns the (quantitative) y-value
+  marginTop = 20, // the top margin, in pixels
+  marginRight = 0, // the right margin, in pixels
+  marginBottom = 30, // the bottom margin, in pixels
+  marginLeft = 40, // the left margin, in pixels
+  width = 640, // the outer width of the chart, in pixels
+  height = 400, // the outer height of the chart, in pixels
+  xDomain, // an array of (ordinal) x-values
+  xRange = [marginLeft, width - marginRight], // [left, right]
+  yType = d3.scaleLinear, // type of y-scale
+  yDomain, // [ymin, ymax]
+  yRange = [height - marginBottom, marginTop], // [bottom, top]
+  xPadding = 0.1, // amount of x-range to reserve to separate bars
+  yFormat, // a format specifier string for the y-axis
+  yLabel, // a label for the y-axis
+  color = "currentColor", // bar fill color
+  duration: initialDuration = 250, // transition duration, in milliseconds
+  delay: initialDelay = (_, i) => i * 20 // per-element transition delay, in milliseconds
+} = {}) {
+  // Compute values.
+  const X = d3.map(data, x);
+  const Y = d3.map(data, y);
 
-// append the svg object to the body of the page
-var svG = d3.select("#scatter_area")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
+  // Compute default domains, and unique the x-domain.
+  if (xDomain === undefined) xDomain = X;
+  if (yDomain === undefined) yDomain = [0, d3.max(Y)];
+  xDomain = new d3.InternSet(xDomain);
 
-// Create data
-var data = [ {x:10, y:20}, {x:40, y:90}, {x:80, y:50} ]
+  // Omit any data not present in the x-domain.
+  const I = d3.range(X.length).filter(i => xDomain.has(X[i]));
 
-// X scale and Axis
-var x = d3.scaleLinear()
-    .domain([0, 100])         // This is the min and the max of the data: 0 to 100 if percentages
-    .range([0, width]);       // This is the corresponding value I want in Pixel
-svG
-  .append('g')
-  .attr("transform", "translate(0," + height + ")")
-  .call(d3.axisBottom(x));
+  // Construct scales, axes, and formats.
+  const xScale = d3.scaleBand(xDomain, xRange).padding(xPadding);
+  const yScale = yType(yDomain, yRange);
+  const xAxis = d3.axisBottom(xScale).tickSizeOuter(0);
+  const yAxis = d3.axisLeft(yScale).ticks(height / 40, yFormat);
+  const format = yScale.tickFormat(100, yFormat);
 
-// X scale and Axis
-var y = d3.scaleLinear()
-    .domain([0, 100])         // This is the min and the max of the data: 0 to 100 if percentages
-    .range([height, 0]);       // This is the corresponding value I want in Pixel
-svG
-  .append('g')
-  .call(d3.axisLeft(y));
+  const svg = d3.create("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .attr("viewBox", [0, 0, width, height])
+      .attr("style", "max-width: 100%; height: auto; height: intrinsic;");
 
-// Add 3 dots for 0, 50 and 100%
-svG
-  .selectAll("whatever")
-  .data(data)
-  .enter()
-  .append("circle")
-    .attr("cx", function(d){ return x(d.x) })
-    .attr("cy", function(d){ return y(d.y) })
-    .attr("r", 7)
+  const yGroup = svg.append("g")
+      .attr("transform", `translate(${marginLeft},0)`)
+      .call(yAxis)
+      .call(g => g.select(".domain").remove())
+      .call(g => g.selectAll(".tick").call(grid))
+      .call(g => g.append("text")
+          .attr("x", -marginLeft)
+          .attr("y", 10)
+          .attr("fill", "currentColor")
+          .attr("text-anchor", "start")
+          .text(yLabel));
+
+  let rect = svg.append("g")
+      .attr("fill", color)
+    .selectAll("rect")
+    .data(I)
+    .join("rect")
+      .property("key", i => X[i]) // for future transitions
+      .call(position, i => xScale(X[i]), i => yScale(Y[i]))
+      .style("mix-blend-mode", "multiply")
+      .call(rect => rect.append("title")
+          .text(i => [X[i], format(Y[i])].join("\n")));
+
+  const xGroup = svg.append("g")
+      .attr("transform", `translate(0,${height - marginBottom})`)
+      .call(xAxis);
+
+  // A helper method for updating the position of bars.
+  function position(rect, x, y) {
+    return rect
+        .attr("x", x)
+        .attr("y", y)
+        .attr("height", typeof y === "function" ? i => yScale(0) - y(i) : i => yScale(0) - y)
+        .attr("width", xScale.bandwidth());
+  }
+
+  // A helper method for generating grid lines on the y-axis.
+  function grid(tick) {
+    return tick.append("line")
+        .attr("class", "grid")
+        .attr("x2", width - marginLeft - marginRight)
+        .attr("stroke", "currentColor")
+        .attr("stroke-opacity", 0.1);
+  }
+
+  // Call chart.update(data, options) to transition to new data.
+  return Object.assign(svg.node(), {
+    update(data, {
+      xDomain, // an array of (ordinal) x-values
+      yDomain, // [ymin, ymax]
+      duration = initialDuration, // transition duration, in milliseconds
+      delay = initialDelay // per-element transition delay, in milliseconds
+    } = {}) {
+      // Compute values.
+      const X = d3.map(data, x);
+      const Y = d3.map(data, y);
+
+      // Compute default domains, and unique the x-domain.
+      if (xDomain === undefined) xDomain = X;
+      if (yDomain === undefined) yDomain = [0, d3.max(Y)];
+      xDomain = new d3.InternSet(xDomain);
+
+      // Omit any data not present in the x-domain.
+      const I = d3.range(X.length).filter(i => xDomain.has(X[i]));
+
+      // Update scale domains.
+      xScale.domain(xDomain);
+      yScale.domain(yDomain);
+
+      // Start a transition.
+      const t = svg.transition().duration(duration);
+
+      // Join the data, applying enter and exit.
+      rect = rect
+          .data(I, function(i) { return this.tagName === "rect" ? this.key : X[i]; })
+          .join(
+            enter => enter.append("rect")
+                .property("key", i => X[i]) // for future transitions
+                .call(position, i => xScale(X[i]), yScale(0))
+                .style("mix-blend-mode", "multiply")
+                .call(enter => enter.append("title")),
+            update => update,
+            exit => exit.transition(t)
+                .delay(delay)
+                .attr("y", yScale(0))
+                .attr("height", 0)
+                .remove()
+          );
+
+      // Update the title text on all entering and updating bars.
+      rect.select("title")
+          .text(i => [X[i], format(Y[i])].join("\n"));
+
+      // Transition entering and updating bars to their new position. Note
+      // that this assumes that the input data and the x-domain are in the
+      // same order, or else the ticks and bars may have different delays.
+      rect.transition(t)
+          .delay(delay)
+          .call(position, i => xScale(X[i]), i => yScale(Y[i]));
+
+      // Transition the x-axis (using a possibly staggered delay per tick).
+      xGroup.transition(t)
+          .call(xAxis)
+          .call(g => g.selectAll(".tick").delay(delay));
+
+      // Transition the y-axis, then post process for grid lines etc.
+      yGroup.transition(t)
+          .call(yAxis)
+        .selection()
+          .call(g => g.select(".domain").remove())
+          .call(g => g.selectAll(".tick").selectAll(".grid").data([,]).join(grid));
+    }
+  });
+}
+
+d3.csv("https://raw.githubusercontent.com/miltondp/manubot-d3js-test/main/content/alphabet.csv", (d) => {
+chart = BarChart(alphabet, {
+  x: d => d.letter,
+  y: d => d.frequency,
+  yFormat: "%",
+  yLabel: "↑ Frequency",
+  width,
+  height: 500,
+  color: "steelblue",
+  duration: 750 // slow transition for demonstration
+})
+var vis = d3.select("#d3plotarea").append(chart)
+})
 
 </script>
 <h2 class="page_break_before" id="references">References</h2>
