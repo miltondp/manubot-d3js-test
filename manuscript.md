@@ -41,9 +41,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://miltondp.github.io/manubot-d3js-test/" />
   <meta name="citation_pdf_url" content="https://miltondp.github.io/manubot-d3js-test/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://miltondp.github.io/manubot-d3js-test/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://miltondp.github.io/manubot-d3js-test/v/568c03ea09285414fafbb16e8129120dd927beae/" />
-  <meta name="manubot_html_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/568c03ea09285414fafbb16e8129120dd927beae/" />
-  <meta name="manubot_pdf_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/568c03ea09285414fafbb16e8129120dd927beae/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://miltondp.github.io/manubot-d3js-test/v/3c5f5b0feb05ae570416ed505470819c30638a7b/" />
+  <meta name="manubot_html_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/3c5f5b0feb05ae570416ed505470819c30638a7b/" />
+  <meta name="manubot_pdf_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/3c5f5b0feb05ae570416ed505470819c30638a7b/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -65,9 +65,9 @@ manubot-clear-requests-cache: false
 
 <small><em>
 This manuscript
-([permalink](https://miltondp.github.io/manubot-d3js-test/v/568c03ea09285414fafbb16e8129120dd927beae/))
+([permalink](https://miltondp.github.io/manubot-d3js-test/v/3c5f5b0feb05ae570416ed505470819c30638a7b/))
 was automatically generated
-from [miltondp/manubot-d3js-test@568c03e](https://github.com/miltondp/manubot-d3js-test/tree/568c03ea09285414fafbb16e8129120dd927beae)
+from [miltondp/manubot-d3js-test@3c5f5b0](https://github.com/miltondp/manubot-d3js-test/tree/3c5f5b0feb05ae570416ed505470819c30638a7b)
 on September 3, 2022.
 </em></small>
 
@@ -580,17 +580,20 @@ function BarChart(data, {
   });
 }
 
-d3.csv("https://raw.githubusercontent.com/miltondp/manubot-d3js-test/main/content/alphabet.csv", (d) => {
-chart = BarChart(d, {
-  x: d => d.letter,
-  y: d => d.frequency,
-  yFormat: "%",
-  yLabel: "↑ Frequency",
-  color: "steelblue",
-  duration: 750 // slow transition for demonstration
-})
-var vis = d3.select("#d3plotarea").append(chart)
-})
+d3.csv("https://raw.githubusercontent.com/miltondp/manubot-d3js-test/main/content/alphabet.csv")
+  .then(function(d) {
+    chart = BarChart(d, {
+      x: d => d.letter,
+      y: d => d.frequency,
+      yFormat: "%",
+      yLabel: "↑ Frequency",
+      color: "steelblue",
+      duration: 750 // slow transition for demonstration
+    })
+
+    var vis = d3.select("#d3plotarea").append(chart)
+  })
+  .catch(function(err) { console.log(err); });
 
 </script>
 
