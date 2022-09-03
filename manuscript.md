@@ -41,9 +41,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://miltondp.github.io/manubot-d3js-test/" />
   <meta name="citation_pdf_url" content="https://miltondp.github.io/manubot-d3js-test/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://miltondp.github.io/manubot-d3js-test/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://miltondp.github.io/manubot-d3js-test/v/5a8fda2bacdfe06ba99b1d5445fec8b04bd6c443/" />
-  <meta name="manubot_html_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/5a8fda2bacdfe06ba99b1d5445fec8b04bd6c443/" />
-  <meta name="manubot_pdf_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/5a8fda2bacdfe06ba99b1d5445fec8b04bd6c443/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://miltondp.github.io/manubot-d3js-test/v/b8e2b3c2dbee8fbd3e2efd49f9e52c4c6af3dd9f/" />
+  <meta name="manubot_html_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/b8e2b3c2dbee8fbd3e2efd49f9e52c4c6af3dd9f/" />
+  <meta name="manubot_pdf_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/b8e2b3c2dbee8fbd3e2efd49f9e52c4c6af3dd9f/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -65,9 +65,9 @@ manubot-clear-requests-cache: false
 
 <small><em>
 This manuscript
-([permalink](https://miltondp.github.io/manubot-d3js-test/v/5a8fda2bacdfe06ba99b1d5445fec8b04bd6c443/))
+([permalink](https://miltondp.github.io/manubot-d3js-test/v/b8e2b3c2dbee8fbd3e2efd49f9e52c4c6af3dd9f/))
 was automatically generated
-from [miltondp/manubot-d3js-test@5a8fda2](https://github.com/miltondp/manubot-d3js-test/tree/5a8fda2bacdfe06ba99b1d5445fec8b04bd6c443)
+from [miltondp/manubot-d3js-test@b8e2b3c](https://github.com/miltondp/manubot-d3js-test/tree/b8e2b3c2dbee8fbd3e2efd49f9e52c4c6af3dd9f)
 on September 3, 2022.
 </em></small>
 
