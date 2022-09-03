@@ -41,9 +41,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://miltondp.github.io/manubot-d3js-test/" />
   <meta name="citation_pdf_url" content="https://miltondp.github.io/manubot-d3js-test/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://miltondp.github.io/manubot-d3js-test/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://miltondp.github.io/manubot-d3js-test/v/2be8fbbb6772970188b8e8bb022b2d1be3e745cc/" />
-  <meta name="manubot_html_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/2be8fbbb6772970188b8e8bb022b2d1be3e745cc/" />
-  <meta name="manubot_pdf_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/2be8fbbb6772970188b8e8bb022b2d1be3e745cc/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://miltondp.github.io/manubot-d3js-test/v/bdc6fa004eb1fa6192e54db0d4eb268e2e6d098c/" />
+  <meta name="manubot_html_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/bdc6fa004eb1fa6192e54db0d4eb268e2e6d098c/" />
+  <meta name="manubot_pdf_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/bdc6fa004eb1fa6192e54db0d4eb268e2e6d098c/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -65,9 +65,9 @@ manubot-clear-requests-cache: false
 
 <small><em>
 This manuscript
-([permalink](https://miltondp.github.io/manubot-d3js-test/v/2be8fbbb6772970188b8e8bb022b2d1be3e745cc/))
+([permalink](https://miltondp.github.io/manubot-d3js-test/v/bdc6fa004eb1fa6192e54db0d4eb268e2e6d098c/))
 was automatically generated
-from [miltondp/manubot-d3js-test@2be8fbb](https://github.com/miltondp/manubot-d3js-test/tree/2be8fbbb6772970188b8e8bb022b2d1be3e745cc)
+from [miltondp/manubot-d3js-test@bdc6fa0](https://github.com/miltondp/manubot-d3js-test/tree/bdc6fa004eb1fa6192e54db0d4eb268e2e6d098c)
 on September 3, 2022.
 </em></small>
 
@@ -411,9 +411,22 @@ useful for *warnings* - [manubot.org](https://manubot.org/)
 
 ## d3.js test
 
-<script
-  src="https://www.jasondavies.com/maps/sphere-spirals/app.min.js"
-></script>
+<div id="observablehq-alphabet-d25f552c"></div>
+<div id="observablehq-BarChart-d25f552c"></div>
+<div id="observablehq-trigger-d25f552c"></div>
+<p>Credit: <a href="https://observablehq.com/@d3/bar-chart-transitions">Bar Chart Transitions by D3</a></p>
+
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+import define from "https://api.observablehq.com/@d3/bar-chart-transitions.js?v=3";
+new Runtime().module(define, name => {
+  if (name === "alphabet") return new Inspector(document.querySelector("#observablehq-alphabet-d25f552c"));
+  if (name === "BarChart") return new Inspector(document.querySelector("#observablehq-BarChart-d25f552c"));
+  if (name === "trigger") return new Inspector(document.querySelector("#observablehq-trigger-d25f552c"));
+  return ["chart","update"].includes(name);
+});
+</script>
+
 
 
 
