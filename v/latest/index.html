@@ -130,9 +130,9 @@
   <meta name="citation_fulltext_html_url" content="https://miltondp.github.io/manubot-d3js-test/" />
   <meta name="citation_pdf_url" content="https://miltondp.github.io/manubot-d3js-test/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://miltondp.github.io/manubot-d3js-test/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://miltondp.github.io/manubot-d3js-test/v/bdc6fa004eb1fa6192e54db0d4eb268e2e6d098c/" />
-  <meta name="manubot_html_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/bdc6fa004eb1fa6192e54db0d4eb268e2e6d098c/" />
-  <meta name="manubot_pdf_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/bdc6fa004eb1fa6192e54db0d4eb268e2e6d098c/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://miltondp.github.io/manubot-d3js-test/v/5a8fda2bacdfe06ba99b1d5445fec8b04bd6c443/" />
+  <meta name="manubot_html_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/5a8fda2bacdfe06ba99b1d5445fec8b04bd6c443/" />
+  <meta name="manubot_pdf_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/5a8fda2bacdfe06ba99b1d5445fec8b04bd6c443/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -168,9 +168,9 @@
 </header>
 <p><small><em>
 This manuscript
-(<a href="https://miltondp.github.io/manubot-d3js-test/v/bdc6fa004eb1fa6192e54db0d4eb268e2e6d098c/">permalink</a>)
+(<a href="https://miltondp.github.io/manubot-d3js-test/v/5a8fda2bacdfe06ba99b1d5445fec8b04bd6c443/">permalink</a>)
 was automatically generated
-from <a href="https://github.com/miltondp/manubot-d3js-test/tree/bdc6fa004eb1fa6192e54db0d4eb268e2e6d098c">miltondp/manubot-d3js-test@bdc6fa0</a>
+from <a href="https://github.com/miltondp/manubot-d3js-test/tree/5a8fda2bacdfe06ba99b1d5445fec8b04bd6c443">miltondp/manubot-d3js-test@5a8fda2</a>
 on September 3, 2022.
 </em></small></p>
 <h2 id="authors">Authors</h2>
@@ -423,7 +423,7 @@ White background specified to serve as a backdrop for transparent sections of th
 </tbody>
 </table>
 </div>
-<div id="tbl:da564a31-09a4-43bc-b8f0-a23868801b11" class="tablenos">
+<div id="tbl:e830ff3c-bdc4-4711-b546-d33f80d0d5b8" class="tablenos">
 <table id="tbl:">
 <caption><span>Table 3:</span> A table with merged cells using the <code>attributes</code> plugin.
 </caption>
@@ -505,27 +505,56 @@ useful for <em>important information</em> - <a href="https://manubot.org/">manub
 <p><span class="banner lightred"><i class="fas fa-ban fa-lg"></i> <strong>Light Red Banner</strong><br>
 useful for <em>warnings</em> - <a href="https://manubot.org/">manubot.org</a></span></p>
 <h2 id="d3.js-test">d3.js test</h2>
-<div id="observablehq-alphabet-d25f552c">
+<!-- Add a svg area, empty -->
+<div id="scatter_area">
 
 </div>
-<div id="observablehq-BarChart-d25f552c">
+<script>
 
-</div>
-<div id="observablehq-trigger-d25f552c">
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 40, bottom: 30, left: 30},
+    width = 450 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
 
-</div>
-<p>
-Credit: <a href="https://observablehq.com/@d3/bar-chart-transitions">Bar Chart Transitions by D3</a>
-</p>
-<script type="module">
-import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
-import define from "https://api.observablehq.com/@d3/bar-chart-transitions.js?v=3";
-new Runtime().module(define, name => {
-  if (name === "alphabet") return new Inspector(document.querySelector("#observablehq-alphabet-d25f552c"));
-  if (name === "BarChart") return new Inspector(document.querySelector("#observablehq-BarChart-d25f552c"));
-  if (name === "trigger") return new Inspector(document.querySelector("#observablehq-trigger-d25f552c"));
-  return ["chart","update"].includes(name);
-});
+// append the svg object to the body of the page
+var svG = d3.select("#scatter_area")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Create data
+var data = [ {x:10, y:20}, {x:40, y:90}, {x:80, y:50} ]
+
+// X scale and Axis
+var x = d3.scaleLinear()
+    .domain([0, 100])         // This is the min and the max of the data: 0 to 100 if percentages
+    .range([0, width]);       // This is the corresponding value I want in Pixel
+svG
+  .append('g')
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(x));
+
+// X scale and Axis
+var y = d3.scaleLinear()
+    .domain([0, 100])         // This is the min and the max of the data: 0 to 100 if percentages
+    .range([height, 0]);       // This is the corresponding value I want in Pixel
+svG
+  .append('g')
+  .call(d3.axisLeft(y));
+
+// Add 3 dots for 0, 50 and 100%
+svG
+  .selectAll("whatever")
+  .data(data)
+  .enter()
+  .append("circle")
+    .attr("cx", function(d){ return x(d.x) })
+    .attr("cy", function(d){ return y(d.y) })
+    .attr("r", 7)
+
 </script>
 <h2 class="page_break_before" id="references">References</h2>
 <!-- Explicitly insert bibliography here -->
