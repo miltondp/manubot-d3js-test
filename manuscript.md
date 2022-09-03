@@ -41,9 +41,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://miltondp.github.io/manubot-d3js-test/" />
   <meta name="citation_pdf_url" content="https://miltondp.github.io/manubot-d3js-test/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://miltondp.github.io/manubot-d3js-test/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://miltondp.github.io/manubot-d3js-test/v/bdc6fa004eb1fa6192e54db0d4eb268e2e6d098c/" />
-  <meta name="manubot_html_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/bdc6fa004eb1fa6192e54db0d4eb268e2e6d098c/" />
-  <meta name="manubot_pdf_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/bdc6fa004eb1fa6192e54db0d4eb268e2e6d098c/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://miltondp.github.io/manubot-d3js-test/v/5a8fda2bacdfe06ba99b1d5445fec8b04bd6c443/" />
+  <meta name="manubot_html_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/5a8fda2bacdfe06ba99b1d5445fec8b04bd6c443/" />
+  <meta name="manubot_pdf_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/5a8fda2bacdfe06ba99b1d5445fec8b04bd6c443/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -65,9 +65,9 @@ manubot-clear-requests-cache: false
 
 <small><em>
 This manuscript
-([permalink](https://miltondp.github.io/manubot-d3js-test/v/bdc6fa004eb1fa6192e54db0d4eb268e2e6d098c/))
+([permalink](https://miltondp.github.io/manubot-d3js-test/v/5a8fda2bacdfe06ba99b1d5445fec8b04bd6c443/))
 was automatically generated
-from [miltondp/manubot-d3js-test@bdc6fa0](https://github.com/miltondp/manubot-d3js-test/tree/bdc6fa004eb1fa6192e54db0d4eb268e2e6d098c)
+from [miltondp/manubot-d3js-test@5a8fda2](https://github.com/miltondp/manubot-d3js-test/tree/5a8fda2bacdfe06ba99b1d5445fec8b04bd6c443)
 on September 3, 2022.
 </em></small>
 
@@ -411,23 +411,56 @@ useful for *warnings* - [manubot.org](https://manubot.org/)
 
 ## d3.js test
 
-<div id="observablehq-alphabet-d25f552c"></div>
-<div id="observablehq-BarChart-d25f552c"></div>
-<div id="observablehq-trigger-d25f552c"></div>
-<p>Credit: <a href="https://observablehq.com/@d3/bar-chart-transitions">Bar Chart Transitions by D3</a></p>
+<!-- Add a svg area, empty -->
+<div id="scatter_area"></div>
 
-<script type="module">
-import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
-import define from "https://api.observablehq.com/@d3/bar-chart-transitions.js?v=3";
-new Runtime().module(define, name => {
-  if (name === "alphabet") return new Inspector(document.querySelector("#observablehq-alphabet-d25f552c"));
-  if (name === "BarChart") return new Inspector(document.querySelector("#observablehq-BarChart-d25f552c"));
-  if (name === "trigger") return new Inspector(document.querySelector("#observablehq-trigger-d25f552c"));
-  return ["chart","update"].includes(name);
-});
+<script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 40, bottom: 30, left: 30},
+    width = 450 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svG = d3.select("#scatter_area")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Create data
+var data = [ {x:10, y:20}, {x:40, y:90}, {x:80, y:50} ]
+
+// X scale and Axis
+var x = d3.scaleLinear()
+    .domain([0, 100])         // This is the min and the max of the data: 0 to 100 if percentages
+    .range([0, width]);       // This is the corresponding value I want in Pixel
+svG
+  .append('g')
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(x));
+
+// X scale and Axis
+var y = d3.scaleLinear()
+    .domain([0, 100])         // This is the min and the max of the data: 0 to 100 if percentages
+    .range([height, 0]);       // This is the corresponding value I want in Pixel
+svG
+  .append('g')
+  .call(d3.axisLeft(y));
+
+// Add 3 dots for 0, 50 and 100%
+svG
+  .selectAll("whatever")
+  .data(data)
+  .enter()
+  .append("circle")
+    .attr("cx", function(d){ return x(d.x) })
+    .attr("cy", function(d){ return y(d.y) })
+    .attr("r", 7)
+
 </script>
-
-
 
 
 ## References {.page_break_before}
