@@ -41,9 +41,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://miltondp.github.io/manubot-d3js-test/" />
   <meta name="citation_pdf_url" content="https://miltondp.github.io/manubot-d3js-test/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://miltondp.github.io/manubot-d3js-test/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://miltondp.github.io/manubot-d3js-test/v/8d0c7a426af563c9d1f25be778838cb4d84bdbe8/" />
-  <meta name="manubot_html_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/8d0c7a426af563c9d1f25be778838cb4d84bdbe8/" />
-  <meta name="manubot_pdf_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/8d0c7a426af563c9d1f25be778838cb4d84bdbe8/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://miltondp.github.io/manubot-d3js-test/v/568c03ea09285414fafbb16e8129120dd927beae/" />
+  <meta name="manubot_html_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/568c03ea09285414fafbb16e8129120dd927beae/" />
+  <meta name="manubot_pdf_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/568c03ea09285414fafbb16e8129120dd927beae/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -65,9 +65,9 @@ manubot-clear-requests-cache: false
 
 <small><em>
 This manuscript
-([permalink](https://miltondp.github.io/manubot-d3js-test/v/8d0c7a426af563c9d1f25be778838cb4d84bdbe8/))
+([permalink](https://miltondp.github.io/manubot-d3js-test/v/568c03ea09285414fafbb16e8129120dd927beae/))
 was automatically generated
-from [miltondp/manubot-d3js-test@8d0c7a4](https://github.com/miltondp/manubot-d3js-test/tree/8d0c7a426af563c9d1f25be778838cb4d84bdbe8)
+from [miltondp/manubot-d3js-test@568c03e](https://github.com/miltondp/manubot-d3js-test/tree/568c03ea09285414fafbb16e8129120dd927beae)
 on September 3, 2022.
 </em></small>
 
@@ -586,8 +586,6 @@ chart = BarChart(d, {
   y: d => d.frequency,
   yFormat: "%",
   yLabel: "↑ Frequency",
-  width,
-  height: 500,
   color: "steelblue",
   duration: 750 // slow transition for demonstration
 })
