@@ -1,7 +1,7 @@
 # Output directory containing the formatted manuscript
 
 The [`gh-pages`](https://github.com/miltondp/manubot-d3js-test/tree/gh-pages) branch hosts the contents of this directory at <https://miltondp.github.io/manubot-d3js-test/>.
-The permalink for this webpage version is <https://miltondp.github.io/manubot-d3js-test/v/2be8fbbb6772970188b8e8bb022b2d1be3e745cc/>.
+The permalink for this webpage version is <https://miltondp.github.io/manubot-d3js-test/v/bdc6fa004eb1fa6192e54db0d4eb268e2e6d098c/>.
 To redirect to the permalink for the latest manuscript version at anytime, use the link <https://miltondp.github.io/manubot-d3js-test/v/freeze/>.
 
 ## Files
@@ -35,4 +35,4 @@ Verifying timestamps with the `ots verify` command requires running a local bitc
 ## Source
 
 The manuscripts in this directory were built from
-[`2be8fbbb6772970188b8e8bb022b2d1be3e745cc`](https://github.com/miltondp/manubot-d3js-test/commit/2be8fbbb6772970188b8e8bb022b2d1be3e745cc).
+[`bdc6fa004eb1fa6192e54db0d4eb268e2e6d098c`](https://github.com/miltondp/manubot-d3js-test/commit/bdc6fa004eb1fa6192e54db0d4eb268e2e6d098c).
