@@ -41,9 +41,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://miltondp.github.io/manubot-d3js-test/" />
   <meta name="citation_pdf_url" content="https://miltondp.github.io/manubot-d3js-test/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://miltondp.github.io/manubot-d3js-test/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://miltondp.github.io/manubot-d3js-test/v/33706afcea5149e93be12b14db72117f2ef7c10d/" />
-  <meta name="manubot_html_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/33706afcea5149e93be12b14db72117f2ef7c10d/" />
-  <meta name="manubot_pdf_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/33706afcea5149e93be12b14db72117f2ef7c10d/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://miltondp.github.io/manubot-d3js-test/v/8f658cfd20628bee5c176613d98cc9b01d526ae7/" />
+  <meta name="manubot_html_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/8f658cfd20628bee5c176613d98cc9b01d526ae7/" />
+  <meta name="manubot_pdf_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/8f658cfd20628bee5c176613d98cc9b01d526ae7/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -65,9 +65,9 @@ manubot-clear-requests-cache: false
 
 <small><em>
 This manuscript
-([permalink](https://miltondp.github.io/manubot-d3js-test/v/33706afcea5149e93be12b14db72117f2ef7c10d/))
+([permalink](https://miltondp.github.io/manubot-d3js-test/v/8f658cfd20628bee5c176613d98cc9b01d526ae7/))
 was automatically generated
-from [miltondp/manubot-d3js-test@33706af](https://github.com/miltondp/manubot-d3js-test/tree/33706afcea5149e93be12b14db72117f2ef7c10d)
+from [miltondp/manubot-d3js-test@8f658cf](https://github.com/miltondp/manubot-d3js-test/tree/8f658cfd20628bee5c176613d98cc9b01d526ae7)
 on September 6, 2022.
 </em></small>
 
@@ -411,6 +411,10 @@ useful for *warnings* - [manubot.org](https://manubot.org/)
 
 ## d3.js test
 
+<form class="oi-ec050e"><label for="oi-ec050e-1">Order</label><select class="oi-ec050e-input" name="input" id="dataorder">
+      <option value="0">Alphabetical</option><option value="1">Frequency, ascending</option><option value="2">Frequency, descending</option>
+    </select></form>
+
 <!-- Add a svg area, empty -->
 <div id="d3plotarea"></div>
 
@@ -585,13 +589,33 @@ d3.csv("https://raw.githubusercontent.com/miltondp/manubot-d3js-test/main/conten
     chart = BarChart(d, {
       x: d => d.letter,
       y: d => d.frequency,
+      width: 700,
+      height: 500,
       yFormat: "%",
       yLabel: "↑ Frequency",
       color: "steelblue",
       duration: 750 // slow transition for demonstration
     })
 
-    var vis = d3.select("#d3plotarea").append(chart)
+    // handle on click event
+    d3.select('#dataorder')
+      .on('change', function() {
+        var newData = eval(d3.select(this).property('value'));
+        // update = chart.update(d3.sort(d, (a, b) => d3.ascending(a.letter, b.letter)))
+        update = chart.update(d3.sort(d, (a, b) => d3.ascending(a.frequency, b.frequency)))
+        // update = chart.update(d3.sort(d, (a, b) => d3.descending(a.frequency, b.frequency)))
+    });
+
+    // function order(){return(
+    //   v = d3.select("#dataorder").node().value;
+    //   Inputs.select(new Map([
+    //     ["Alphabetical", (a, b) => d3.ascending(a.letter, b.letter)],
+    //     ["Frequency, ascending", (a, b) => d3.ascending(a.frequency, b.frequency)],
+    //     ["Frequency, descending", (a, b) => d3.descending(a.frequency, b.frequency)]
+    //   ]), {label: "Order"})
+    // )}
+
+    var vis = d3.select("#d3plotarea").html(chart.outerHTML)
   })
   .catch(function(err) { console.log(err); });
 
