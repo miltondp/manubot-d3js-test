@@ -5,7 +5,7 @@ keywords:
 - publishing
 - manubot
 lang: en-US
-date-meta: '2022-09-03'
+date-meta: '2022-09-06'
 author-meta:
 - John Doe
 - Jane Roe
@@ -19,8 +19,8 @@ header-includes: |-
   <meta name="citation_title" content="Manuscript Title" />
   <meta property="og:title" content="Manuscript Title" />
   <meta property="twitter:title" content="Manuscript Title" />
-  <meta name="dc.date" content="2022-09-03" />
-  <meta name="citation_publication_date" content="2022-09-03" />
+  <meta name="dc.date" content="2022-09-06" />
+  <meta name="citation_publication_date" content="2022-09-06" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -41,9 +41,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://miltondp.github.io/manubot-d3js-test/" />
   <meta name="citation_pdf_url" content="https://miltondp.github.io/manubot-d3js-test/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://miltondp.github.io/manubot-d3js-test/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://miltondp.github.io/manubot-d3js-test/v/3c5f5b0feb05ae570416ed505470819c30638a7b/" />
-  <meta name="manubot_html_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/3c5f5b0feb05ae570416ed505470819c30638a7b/" />
-  <meta name="manubot_pdf_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/3c5f5b0feb05ae570416ed505470819c30638a7b/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://miltondp.github.io/manubot-d3js-test/v/33706afcea5149e93be12b14db72117f2ef7c10d/" />
+  <meta name="manubot_html_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/33706afcea5149e93be12b14db72117f2ef7c10d/" />
+  <meta name="manubot_pdf_url_versioned" content="https://miltondp.github.io/manubot-d3js-test/v/33706afcea5149e93be12b14db72117f2ef7c10d/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -65,10 +65,10 @@ manubot-clear-requests-cache: false
 
 <small><em>
 This manuscript
-([permalink](https://miltondp.github.io/manubot-d3js-test/v/3c5f5b0feb05ae570416ed505470819c30638a7b/))
+([permalink](https://miltondp.github.io/manubot-d3js-test/v/33706afcea5149e93be12b14db72117f2ef7c10d/))
 was automatically generated
-from [miltondp/manubot-d3js-test@3c5f5b0](https://github.com/miltondp/manubot-d3js-test/tree/3c5f5b0feb05ae570416ed505470819c30638a7b)
-on September 3, 2022.
+from [miltondp/manubot-d3js-test@33706af](https://github.com/miltondp/manubot-d3js-test/tree/33706afcea5149e93be12b14db72117f2ef7c10d)
+on September 6, 2022.
 </em></small>
 
 ## Authors
